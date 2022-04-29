@@ -68,7 +68,7 @@
         clearTimeout(label.highlightTimeout);
         label.highlightTimeout = setTimeout(() => label.style.color = 'inherit', 100);
     	//location.replace("http://google.com");
-	postForm('http://localhost:8000/qr_scan', {id: result.data});
+	    postForm('{% url "qr_scan" %}', {id: result.data});
     }
 
     // ####### Web Cam Scanning #######
