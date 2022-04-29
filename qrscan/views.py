@@ -14,9 +14,9 @@ from django.core.exceptions import ObjectDoesNotExist, DoesNotExist
 def qr_scan(request):
     if request.POST:
         registrantid = request.POST.get('id', None)
-        #registrantid = context['id']
+        
         try:
-            registrant = Registrant.objects.get(id=int(registrantid))
+            registrant = Registrant.objects.get(id=registrantid)
             event = Event.objects.get(id=registrant.event.id)
         
             
