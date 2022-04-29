@@ -9,7 +9,7 @@
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h4>{{  event_info }}</h4>
         <h4>{{  event_lokasi }}</h4>
-        <h4>{{  event_tanggal }}</h4>
+        <h4>{{  event_tanggal|date:"l, d F Y, G:i" }}</h4>
     </div>
 </div>
 <br />        
@@ -33,6 +33,6 @@
 </div>
 
 <br />
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/'">Selesai</button>
+<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Selesai</button>
 {% endblock content %}
 

@@ -16,7 +16,7 @@
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h3>{{  event_info }}</h3>
         <h3>{{  event_lokasi }}</h3>
-        <h3>{{  event_tanggal }}</h3>
+        <h3>{{  event_tanggal|date:"l, d F Y, G:i" }}</h3>
     </div>
 </div>
 <br />        
@@ -41,7 +41,7 @@
             <input type="hidden" name="event" value="{{ event_id }}">
             <br />
             <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg btn-block">Konfirmasi</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "register" %}'">Batal</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Batal</button>
         </form>
     </div>
 </div>

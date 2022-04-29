@@ -16,7 +16,7 @@
             {{ form | crispy }}
             <br />
             <button type="submit" class="btn btn-primary btn-lg btn-block">Cari</button>
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/'">Batal</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Batal</button>
         </form>
     </div>
 </div>
