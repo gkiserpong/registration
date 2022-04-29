@@ -1,6 +1,6 @@
 asgiref==3.4.1
 Django==3.2.12
-django-crispy-forms==1.14.0
+django-crispy-forms==1.11.1
 django-jazzmin==2.5.0
 django-qr-code==3.0.0
 djangorestframework==3.13.1
