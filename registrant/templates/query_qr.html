@@ -5,7 +5,7 @@
 <br />
 <div class="card text-center bg-success text-light">
     <div class="card-body">
-        <div class="card-title"><h1>Pendaftaran Ibadah Onsite</h1></div>
+        <div class="card-title"><h1>Cari QR Code</h1></div>
     </div>
 </div>
 <br />
@@ -15,7 +15,8 @@
             {% csrf_token %}
             {{ form | crispy }}
             <br />
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Cari</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/'">Batal</button>
         </form>
     </div>
 </div>

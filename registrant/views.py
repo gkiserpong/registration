@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf import settings 
 
 from registrant.models import Registrant
-from .forms import RegistrantForm, RegisterForm, Tetot
+from .forms import RegisterForm, QueryQrForm
 from event.models import Event
 from django.http import HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
@@ -41,7 +41,6 @@ def qr_scan(request):
 def qr_check(request):
 
     registrantid = request.GET.get('id', None)
-    #registrantid = context['id']
     registrant = Registrant.objects.get(id=registrantid)
     event = Event.objects.get(id=registrant.event.id)
 
@@ -127,15 +126,6 @@ def confirmation_request(request, context):
         'base_url': settings.BASE_URL
     }
 
-    """
-    try:
-        email_used = Registrant.objects.get(
-            email=context['email'],
-            is_come=False
-        )
-    except Registrant.DoesNotExist:
-        email_used = None
-    """
     email_used = Registrant.objects.filter(
             email=context['email'],
             is_come=False
@@ -154,7 +144,7 @@ def register_request(request):
     if request.method == 'POST':
         #form_register = RegisterForm(request.POST)
         
-        form = RegistrantForm(request.POST)
+        form = RegisterForm(request.POST)
 
         if form.is_valid():
             
@@ -174,7 +164,49 @@ def register_request(request):
             }
             return confirmation_request(request, context)
     else:
-        form = RegistrantForm()
+        form = RegisterForm()
         
     
     return render(request, "register_form.html", {"form": form})
+
+
+def query_qr(request):
+    if request.method == 'POST':
+        form = QueryQrForm(request.POST)
+        
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            eventid = request.POST.get('event')
+
+            try:
+                registrant = Registrant.objects.get(
+                    email = email,
+                    event = eventid,
+                    is_come = False
+                )
+
+                event = Event.objects.get(id=registrant.event.id)
+
+                event_context = {
+                    'id' : registrant.id,
+                    'nama' : registrant.nama,
+                    'email' : registrant.email,
+                    'telepon' : registrant.telepon,
+                    'jumlah': registrant.jumlah,
+                    'event_id': registrant.event,
+                    'event_nama' : event.nama,
+                    'event_info' : event.info,
+                    'event_lokasi' : event.lokasi,
+                    'event_tanggal' : event.tanggal,
+                    'event_kapasitas' : event.kapasitas,
+                }
+
+                return render(request, "qr_check.html", event_context)
+            
+            except:
+                return HttpResponseNotFound("404")
+        
+    else:
+        form = QueryQrForm()
+
+    return render(request, "query_qr.html", {'form': form})

@@ -21,5 +21,18 @@
         <h4>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h4>
     </div>
 </div>
+
+<br />
+<div class="card text-center">
+    <div class="card-body">
+        <div class="card-title"><h1>QR Code</h1></div>
+        <h3>Harap simpan QR ini dan tunjukkan ketika Anda Hadir</h3>
+        <h3>Tuhan Yesus Memberkati</h3>
+        <span>{% qr_from_text id size="m" image_format="png" error_correction="L" %}</span>
+    </div>
+</div>
+
+<br />
+<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/'">Selesai</button>
 {% endblock content %}
 

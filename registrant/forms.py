@@ -25,31 +25,17 @@ class RegisterForm(forms.Form):
         queryset=Event.objects.filter(is_active=True),
         widget=forms.RadioSelect()
     )
-    member = forms.ChoiceField(
-        label="Berapa yang datang? (Termasuk Anda)",
-        choices=MEMBER_CHOICES,
-        initial=1
-    )
-    #jumlah = forms.IntegerField(
-    #    label="Berapa yang datang?",
-    #    initial=1
-    #)    
-
-class RegistrantForm(forms.Form):
-    #class Meta:
-    #    model = Registrant
-    #    fields = "__all__"
-
-    nama = forms.CharField(label="Nama Lengkap Anda")
-    email = forms.EmailField(label="Alamat Email Yang Masih Valid")
-    telepon = forms.CharField(label="Nomor HP")
-    event = forms.ModelChoiceField(
-        label="Pilih Jadwal Ibadah",
-        queryset=Event.objects.filter(is_active=True),
-        widget=forms.RadioSelect()
-    )
     jumlah = forms.ChoiceField(
         label="Berapa yang datang? (Termasuk Anda)",
         choices=MEMBER_CHOICES,
         initial=1
+    )  
+
+
+class QueryQrForm(forms.Form):
+    email = forms.EmailField(label="Alamat Email yang digunakan untuk mendaftar")
+    event = forms.ModelChoiceField(
+        label="Jadwal Ibadah yang Anda mendaftar",
+        queryset=Event.objects.filter(is_active=True),
+        widget=forms.RadioSelect()
     )
