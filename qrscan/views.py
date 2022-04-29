@@ -7,7 +7,7 @@ from event.models import Event
 from django.http import HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from django.templatetags.static import static
-from django.core.exceptions import ObjectDoesNotExist, DoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @csrf_exempt
@@ -40,7 +40,7 @@ def qr_scan(request):
 
             return render(request, "qr_scan.html", event_context)
 
-        except DoesNotExist:
+        except ObjectDoesNotExist:
             return render(request, "qr_not_found.html")
 
     return HttpResponseNotFound("404")
