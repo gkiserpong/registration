@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<br />
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h2>Pendaftaran Ibadah Onsite</h2></div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br />
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Daftar</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+

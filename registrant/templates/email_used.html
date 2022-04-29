@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load qr_code %}
+{% block content %}
+
+<br />
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h1 class="text-danger">Maaf, Email Sudah Terpakai</h1></div>
+        <h3>Email <strong>{{ email }}</strong> sudah terpakai. Mohon menggunakan email yang lain.</h3>
+        <br />
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "register" %}'">Ulangi</button>
+    </div>
+</div>
+        
+{% endblock content %}
+

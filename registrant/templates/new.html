@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Pendaftaran</div>
+        <form method="post">
+                {% crispy register_form %}
+            <button type="submit" class="btn btn-primary">Daftar</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+

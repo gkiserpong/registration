@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load qr_code %}
+{% block content %}
+
+<br />
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h1>{{ event_nama }}</h1></div>
+        <h3>{{  event_info }}</h3>
+        <h3>{{  event_lokasi }}</h3>
+        <h3>{{  event_tanggal }}</h3>
+    </div>
+</div>
+<br />        
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h1>{{ nama }}</h1></div>
+        <h3>{{  email }}</h3>
+        <h3>{{  telepon }}</h3>
+        <h3>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h3>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-body">
+        <h2>Harap Melakukan Konfirmasi Sebelum Waktu Habis</h2>
+        <h1 id="counter"></h1>
+        <form action="{% url "qr_ok" %}"method="post">
+            {% csrf_token %}
+            <input type="hidden" name="nama" value="{{ nama }}">
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="hidden" name="telepon" value="{{ telepon }}">
+            <input type="hidden" name="event" value="{{ event_id }}">
+            <br />
+            <button id="btnSubmit" type="submit" class="btn btn-primary btn-lg btn-block">Konfirmasi</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "register" %}'">Batal</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    function countdown() {
+        var seconds = 59;
+        function tick() {
+          var counter = document.getElementById("counter");
+          seconds--;
+          counter.innerHTML =
+            "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+          if (seconds > 0) {
+            setTimeout(tick, 1000);
+          } else {
+            document.getElementById("btnSubmit").style.visibility = 'hidden';
+            //document.getElementById("btnSubmit").disable = true;
+            //document.getElementById("counter").innerHTML = "";
+          }
+        }
+        tick();
+      }
+      countdown();
+</script>
+{% endblock content %}
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load qr_code %}
+{% block content %}
+
+<br />
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h1 class="text-danger">Maaf, Kapasitas tidak cukup</h1></div>
+        <h3>Anda mendaftar untuk <strong>{{ jumlah }}</strong> orang. Kapasitas hanya <strong>{{ kapasitas }}</strong> orang.</h3>
+        <br />
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='http://localhost:8000/daftar'">Ulangi</button>
+    </div>
+</div>
+        
+{% endblock content %}
+

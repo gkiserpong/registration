@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load qr_code %}
+{% block content %}
+
+<br />
+<div class="card text-center">
+    <div class="card-body">
+        <div class="card-title"><h1>QR Code</h1></div>
+        <h3>Harap simpan QR ini dan tunjukkan ketika Anda Hadir</h3>
+        <h3>Tuhan Yesus Memberkati</h3>
+        <span>{% qr_from_text id size="m" image_format="png" error_correction="L" %}</span>
+    </div>
+</div>
+{% endblock content %}
+
