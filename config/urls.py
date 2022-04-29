@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from registrant.views import register_request, qr_check, qr_scan, qr_ok, query_qr
+from registrant.views import register_request, qr_check, qr_ok, query_qr
+from qrscan.views import qr_scan, pin_entry
 from landing.views import landing
+
 #from rest_framework import routers
 #from event.apis import EventViewSet
 #from registrant.apis import RegistrantApiSet, MemberApiSet
@@ -20,4 +22,5 @@ urlpatterns = [
     path('qr_check', qr_check, name="qr_check"),
     path('qr_scan', qr_scan, name="qr_scan"),
     path('query', query_qr, name="query"),
+    path('pin', pin_entry, name="pin"),
 ]

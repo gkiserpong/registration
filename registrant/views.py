@@ -6,38 +6,9 @@ from registrant.models import Registrant
 from .forms import RegisterForm, QueryQrForm
 from event.models import Event
 from django.http import HttpResponseNotFound
-from django.views.decorators.csrf import csrf_exempt
 
 
-@csrf_exempt
-def qr_scan(request):
-    if request.POST:
-        registrantid = request.POST.get('id', None)
-        #registrantid = context['id']
-        registrant = Registrant.objects.get(id=registrantid)
-        event = Event.objects.get(id=registrant.event.id)
-
-        registrant.is_come = True
-        registrant.save()
-
-        event_context = {
-            'nama' : registrant.nama,
-            'email' : registrant.email,
-            'telepon' : registrant.telepon,
-            'jumlah': registrant.jumlah,
-            'event_id': registrant.event,
-            'event_nama' : event.nama,
-            'event_info' : event.info,
-            'event_lokasi' : event.lokasi,
-            'event_tanggal' : event.tanggal,
-            'event_kapasitas' : event.kapasitas,
-        }
-
-        return render(request, "qr_scan.html", event_context)
-
-    return HttpResponseNotFound("404")
-
-#qr_scanned
+#qr_query
 def qr_check(request):
 
     registrantid = request.GET.get('id', None)
@@ -164,10 +135,12 @@ def register_request(request):
             }
             return confirmation_request(request, context)
     else:
-        form = RegisterForm()
+        event = Event.objects.filter(is_active=True)
+        if event:
+            form = RegisterForm()
+            return render(request, "register_form.html", {"form": form})
         
-    
-    return render(request, "register_form.html", {"form": form})
+    return render(request, "no_event.html")
 
 
 def query_qr(request):
@@ -207,6 +180,9 @@ def query_qr(request):
                 return HttpResponseNotFound("404")
         
     else:
-        form = QueryQrForm()
-
-    return render(request, "query_qr.html", {'form': form})
+        event = Event.objects.filter(is_active=True)
+        if event:
+            form = QueryQrForm()
+            return render(request, "query_qr.html", {"form": form})
+        
+    return render(request, "no_event.html")

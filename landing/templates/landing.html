@@ -21,7 +21,7 @@
     <div class="cover-container">
       <div class="masthead clearfix">
         <div class="inner">
-          <h3 class="masthead-brand">Coming Soon</h3>
+        <!--  <h3 class="masthead-brand">Coming Soon</h3> -->
 	  <!--
           <nav class="nav nav-masthead">
             <a class="nav-link nav-social" href="#" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
@@ -33,10 +33,17 @@
         </div>
       </div>      
       <div class="inner cover">
-        <h1 class="cover-heading">“Mereka bertekun dalam pengajaran rasul-rasul dan dalam persekutuan. Dan mereka selalu berkumpul untuk memecahkan roti dan berdoa.”</h1>
+        <h1>“Mereka bertekun dalam pengajaran rasul-rasul dan dalam persekutuan. Dan mereka selalu berkumpul untuk memecahkan roti dan berdoa.”</h1>
         <p class="lead cover-copy">Kisah Para Rasul 2:42</p>
-        <p class="lead"><button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "register" %}'">Daftar Ibadah Onsite</button></p>
-        <p class="lead"><button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "query" %}'">Cari Pendaftaran</button></p>
+        <p class="lead">
+          <button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "register" %}'">Daftar Ibadah Onsite</button>
+        </p>
+        <p class="lead">
+            <button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "query" %}'">Cari Pendaftaran</button>
+        </p>
+        <p class="lead">
+          <button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "pin" %}'">Scan QRCode (Petugas)</button>
+        </p>
       </div>
       <div class="mastfoot">
         <div class="inner">

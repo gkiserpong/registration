@@ -1,7 +1,5 @@
 from email.policy import default
 from django import forms
-#from django.forms import ModelForm
-from .models import Registrant
 from event.models import Event
 
 

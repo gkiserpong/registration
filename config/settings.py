@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'event',
     'registrant',
+    'qrscan',
     'landing',
     'jazzmin',
     'django.contrib.admin',

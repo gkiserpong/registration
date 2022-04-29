@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>QR Scanner GKIS</title>
 </head>
-<body>
-<h1>Scan QR Code</h1>
-<div id="video-container">
+<body style="background-image: url('{% static 'landing/img/cover.jpg' %}');">
+<!--<h1 style="text-align: center;">Scan QR Code</h1>-->
+<br />
+<div id="video-container" style="text-align: center;">
     <video id="qr-video"></video>
 </div>
 
@@ -14,15 +16,15 @@
 <input id="show-scan-region" value="0" type="hidden">
 <input id="inversion-mode-select" value="original" type="hidden">
 
-<span id="cam-qr-result">None</span>
+<h5 id="cam-qr-result" style="text-align: center;">None</h5>
 <br>
-<span id="cam-qr-result-timestamp"></span>
+<h5 id="cam-qr-result-timestamp" style="text-align: center;"></h5>
 <br>
 
 <!--<script src="../qr-scanner.umd.min.js"></script>-->
 <!--<script src="../qr-scanner.legacy.min.js"></script>-->
 <script type="module">
-    import QrScanner from "./qr-scanner.min.js";
+    import QrScanner from "{% static 'qrscan/scanner/qr-scanner.min.js' %}";
 
     const video = document.getElementById('qr-video');
     const videoContainer = document.getElementById('video-container');
