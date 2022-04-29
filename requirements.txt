@@ -1,5 +1,5 @@
-asgiref==3.5.0
-Django==4.0.4
+asgiref==3.4.1
+Django==3.2.12
 django-crispy-forms==1.14.0
 django-jazzmin==2.5.0
 django-qr-code==3.0.0
