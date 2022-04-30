@@ -77,7 +77,7 @@ def qr_ok(request):
         # Sending Email
         subject = '[QRCode] ' + event.nama
         html_message = render_to_string('qr_ok_email.html', context)
-        from_email = settings.EMAIL_HOST_USER
+        from_email = settings.EMAIL_HOST_USER 
         to_email = reg.email
 
         message = EmailMessage(subject, html_message, from_email, [to_email])
