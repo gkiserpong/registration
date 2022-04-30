@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>Shalom,</p>
+
+<p>Detail pendaftaran ibadah onsite Anda:</p>
+<br />
+<h3>{{ event_nama }}</h3></div>
+<p>{{ event_info }}</p>
+<p>{{ event_lokasi }}</p>
+<p>{{ event_tanggal|date:"l, d F Y, G:i" }}</p>
+
+ <br />      
+<h3>{{ nama }}</h3>
+<p>{{ email }}</p>
+<p>{{ telepon }}</p>
+<p>Jumlah Yang Datang: <strong>{{ jumlah }}</strong> orang</p>
+
+<br />
+<p>QR Code Anda bisa di akses dengan klik tautant ini <a href="{{ base_url }}{% url 'qr_check' %}?id={{ id }}">QR Code</a></p>
+
+<!--<a href="{{ base_url }}{% url 'landing' %}">{{ base_url }}{% url 'landing' %}</a>-->
+
+{% endblock content %}
+

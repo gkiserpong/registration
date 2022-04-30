@@ -6,6 +6,9 @@ from registrant.models import Registrant
 from .forms import RegisterForm, QueryQrForm
 from event.models import Event
 from django.http import HttpResponseNotFound
+from django.core.mail import send_mail, EmailMessage
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 
 #qr_query
@@ -54,9 +57,9 @@ def qr_ok(request):
             email = email,
             telepon = telepon,
             event = event,
+            jumlah = jumlah
         )
 
-        
         context = {
             'id' : reg.id,
             'nama': nama,
@@ -64,7 +67,23 @@ def qr_ok(request):
             'telepon': telepon,
             'event': eventid,
             'jumlah': jumlah,
+            'event_nama': event.nama,
+            'event_info': event.info,
+            'event_tanggal': event.tanggal,
+            'event_lokasi': event.lokasi,
+            'base_url': settings.BASE_URL
         }
+
+        # Sending Email
+        subject = '[QRCode] ' + event.nama
+        html_message = render_to_string('qr_ok_email.html', context)
+        from_email = settings.EMAIL_HOST_USER
+        to_email = reg.email
+
+        message = EmailMessage(subject, html_message, from_email, [to_email])
+        message.content_subtype = 'html' # this is required because there is no plain text email message
+        message.send()
+
         return render(request, "qr_ok.html", context)
 
     return HttpResponseNotFound("404")
