@@ -134,13 +134,16 @@ def register_request(request):
 
             }
             return confirmation_request(request, context)
+
+
     else:
         event = Event.objects.filter(is_active=True)
         if event:
             form = RegisterForm()
-            return render(request, "register_form.html", {"form": form})
-        
-    return render(request, "no_event.html")
+        else:
+            return render(request, "no_event.html")
+
+    return render(request, "register_form.html", {"form": form})
 
 
 def query_qr(request):
