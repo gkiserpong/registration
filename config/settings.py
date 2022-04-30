@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+#dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -137,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-BASE_URL = str(os.getenv('BASE_URL'))
+BASE_URL = str(os.environ['BASE_URL'])
 
 
 # EmailProject/settings.py
@@ -148,7 +148,7 @@ EMAIL_HOST = 'host.gkiserpong.org'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'noreply@gkiserpong.org'
-#EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+#EMAIL_HOST_PASSWORD = str(os.environ['EMAIL_HOST_PASSWORD'])
 EMAIL_HOST_PASSWORD = '2MzVugIPTf'
 
 
