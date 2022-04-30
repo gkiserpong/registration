@@ -23,6 +23,7 @@ def qr_scan(request):
 
 
             registrant.is_come = True
+            registrant.is_active = False
             registrant.save()
 
             event_context = {

@@ -177,7 +177,7 @@ def query_qr(request):
                 registrant = Registrant.objects.get(
                     email = email,
                     event = eventid,
-                    is_come = False
+                    is_active = True
                 )
 
                 event = Event.objects.get(id=registrant.event.id)
