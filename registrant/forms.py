@@ -33,7 +33,7 @@ class RegisterForm(forms.Form):
         widget=forms.RadioSelect()
     )
     jumlah = forms.ChoiceField(
-        label="Berapa yang datang? (Termasuk Anda)",
+        label="Berapa yang datang termasuk Anda?",
         choices=MEMBER_CHOICES,
         initial=1
     )  
