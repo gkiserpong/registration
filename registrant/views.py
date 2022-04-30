@@ -199,7 +199,7 @@ def query_qr(request):
                 return render(request, "qr_check.html", event_context)
             
             except:
-                return render(request, "not_found.html", event_context)
+                return render(request, "not_found.html", {'email': email})
         
     else:
         event = Event.objects.filter(is_active=True)
