@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 # Event
@@ -24,3 +26,11 @@ class Event(models.Model):
             _(self.tanggal.strftime('%H:%M %d/%m/%Y')),
             (self.kapasitas-self.jumlah_pendaftar))
         #return "%s (%s)" % (self.nama, (self.kapasitas-self.jumlah_pendaftar))
+
+    def clean(self):
+        if self.tanggal < now():
+            raise ValidationError(_("Tanggal tidak bisa di masa lalu!"))
+        if self.kapasitas < 0:
+            raise ValidationError(_("Kapasitas tidak tidak boleh negatif!"))
+        
+        

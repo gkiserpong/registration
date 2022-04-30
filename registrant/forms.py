@@ -20,6 +20,7 @@ class RegisterForm(forms.Form):
     nama = forms.CharField(label="Nama Lengkap Anda")
     email = forms.EmailField(
         label="Alamat Email Yang Masih Valid",
+        #error_messages={"Mohon masukkan alamat email yang benar"}
     )
     telepon = forms.CharField(
         label="Nomor HP",
