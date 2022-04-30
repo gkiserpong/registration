@@ -1,0 +1,164 @@
+[
+{
+    "model": "wilayah.wilayah",
+    "pk": 1,
+    "fields": {
+        "nama_wilayah": "ALAM SUTERA",
+        "created_at": "2021-05-22T11:40:41.970Z",
+        "updated_at": "2021-05-22T11:40:41.970Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 2,
+    "fields": {
+        "nama_wilayah": "ANGGREK LOKA",
+        "created_at": "2021-05-22T11:40:55.692Z",
+        "updated_at": "2021-05-22T11:40:55.692Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 3,
+    "fields": {
+        "nama_wilayah": "BATAN INDAH",
+        "created_at": "2021-05-22T11:40:59.963Z",
+        "updated_at": "2021-05-22T11:40:59.963Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 4,
+    "fields": {
+        "nama_wilayah": "CARDOLYNE",
+        "created_at": "2021-05-22T11:41:08.368Z",
+        "updated_at": "2021-05-22T11:41:08.368Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 5,
+    "fields": {
+        "nama_wilayah": "CAROTA",
+        "created_at": "2021-05-22T11:41:22.734Z",
+        "updated_at": "2021-05-22T11:41:22.734Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 6,
+    "fields": {
+        "nama_wilayah": "DAGO BUARAN",
+        "created_at": "2021-05-22T11:41:26.884Z",
+        "updated_at": "2021-05-22T11:41:26.884Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 7,
+    "fields": {
+        "nama_wilayah": "DELATINOS",
+        "created_at": "2021-05-22T11:41:30.925Z",
+        "updated_at": "2021-05-22T11:41:30.925Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 8,
+    "fields": {
+        "nama_wilayah": "GIRI LOKA",
+        "created_at": "2021-05-22T11:41:36.871Z",
+        "updated_at": "2021-05-22T11:41:36.871Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 9,
+    "fields": {
+        "nama_wilayah": "GRIYA LOKA",
+        "created_at": "2021-05-22T11:41:44.540Z",
+        "updated_at": "2021-05-22T11:41:44.540Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 10,
+    "fields": {
+        "nama_wilayah": "KENCANA LOKA",
+        "created_at": "2021-05-22T11:41:49.515Z",
+        "updated_at": "2021-05-22T11:41:49.515Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 11,
+    "fields": {
+        "nama_wilayah": "MELATI MAS",
+        "created_at": "2021-05-22T11:41:54.273Z",
+        "updated_at": "2021-05-22T11:41:54.273Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 12,
+    "fields": {
+        "nama_wilayah": "NUSA LOKA",
+        "created_at": "2021-05-22T11:42:00.105Z",
+        "updated_at": "2021-05-22T11:42:00.105Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 13,
+    "fields": {
+        "nama_wilayah": "POS JEMAAT CIKELEANG",
+        "created_at": "2021-05-22T11:42:09.176Z",
+        "updated_at": "2021-05-22T11:42:09.176Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 14,
+    "fields": {
+        "nama_wilayah": "POS JEMAAT PAGEDANGAN",
+        "created_at": "2021-05-22T11:42:16.946Z",
+        "updated_at": "2021-05-22T11:42:16.946Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 15,
+    "fields": {
+        "nama_wilayah": "PUSPITEK",
+        "created_at": "2021-05-22T11:42:20.801Z",
+        "updated_at": "2021-05-22T11:42:20.801Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 16,
+    "fields": {
+        "nama_wilayah": "SURADITA",
+        "created_at": "2021-05-22T11:42:24.972Z",
+        "updated_at": "2021-05-22T11:42:24.972Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 17,
+    "fields": {
+        "nama_wilayah": "FORESTA",
+        "created_at": "2021-05-22T11:42:24.972Z",
+        "updated_at": "2021-05-22T11:42:24.972Z"
+    }
+},
+{
+    "model": "wilayah.wilayah",
+    "pk": 18,
+    "fields": {
+        "nama_wilayah": "SIMPATISAN",
+        "created_at": "2021-05-22T11:42:24.972Z",
+        "updated_at": "2021-05-22T11:42:24.972Z"
+    }
+}
+]

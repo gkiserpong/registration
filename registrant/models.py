@@ -15,6 +15,7 @@ class Registrant(models.Model):
                               limit_choices_to={'is_active': True})
     jumlah = models.IntegerField(default=1)
     is_come = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -25,6 +26,8 @@ class Registrant(models.Model):
     def __str__(self):
         return "%s" % (self.nama)
 
+    def clean(self):
+        self.email = self.email.lower()
 
 @receiver(post_save, sender=Registrant)
 def auto_create_member(sender, instance, created, **kwargs):
