@@ -20,5 +20,26 @@
         </form>
     </div>
 </div>
+
+<script>
+    //event_id = document.querySelectorAll('[id*="id_event_"]');
+    //event_id = document.querySelectorAll('[for*="id_event_"]').className="form-check-label";
+    eventId = document.querySelectorAll('[for*="id_event_"]');
+    //console.log(eventId);
+    for (let i = 0; i < eventId.length; i++) {
+        if (eventId[i].className == "form-check-label") {
+            eventText = eventId[i].innerText;
+            eventCap = eventText.split("s: ")
+            //console.log(eventId[i]);
+            if (eventCap[1] == "0") {
+                eventIdText = eventId[i].htmlFor;
+                checkId = document.getElementById(eventIdText);
+                checkId.disabled = true;
+                console.log(checkId);
+            }
+        }
+      }
+    //console.log(event_id);
+</script>
 {% endblock content %}
 
