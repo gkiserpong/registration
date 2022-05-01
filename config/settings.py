@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'registrant',
     'qrscan',
     'landing',
+    'report',
     'wilayah',
     'jazzmin',
     'django.contrib.admin',
