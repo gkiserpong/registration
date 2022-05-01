@@ -18,7 +18,7 @@ MEMBER_CHOICES =(
 
 class RegisterForm(forms.Form):
     phone_regex = RegexValidator(regex=r'08([1-9])\d{7,14}', message="Nomor harus dalam format: '0899999999'. Minimal 10 dan maximal 15 digits.")
-    nama = forms.CharField(label="Nama Lengkap Anda")
+    nama = forms.CharField(label="nama Lengkap Anda")
     email = forms.EmailField(
         label="Alamat Email Yang Masih Valid",
         #error_messages={"Mohon masukkan alamat email yang benar"}
