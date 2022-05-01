@@ -33,7 +33,7 @@ def qr_scan(request):
                 'event_kapasitas' : event.kapasitas,
             }
 
-            if registrant.is_active:
+            if registrant.is_active == True:
 
                 registrant.is_come = True
                 registrant.is_active = False
@@ -42,6 +42,7 @@ def qr_scan(request):
                 registrant.save()
 
                 return render(request, "qr_scan.html", event_context)
+            
             else:
                 return render(request, "qr_used.html", event_context)
 
