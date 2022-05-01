@@ -4,8 +4,8 @@ from .models import Registrant, Member
 
 
 class RegistrantAdmin(admin.ModelAdmin):
-    fields = ['nama', 'email', 'telepon', 'event', 'jumlah', 'is_come']
-    list_display = ('id', 'nama', 'email', 'telepon', 'event', 'jumlah', 'is_come')
+    fields = ['nama', 'email', 'telepon', 'wilayah', 'event', 'jumlah']
+    list_display = ('id', 'nama', 'email', 'telepon', 'wilayah', 'event', 'jumlah', 'is_come', 'is_active')
 
 
 class MemberAdmin(admin.ModelAdmin):

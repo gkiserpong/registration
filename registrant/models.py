@@ -1,6 +1,7 @@
 from django.db import models
+from pkg_resources import require
 from event.models import Event
-
+from wilayah.models import Wilayah
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -10,10 +11,18 @@ class Registrant(models.Model):
     nama = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     telepon = models.CharField(max_length=30)
-    event = models.ForeignKey(Event,
-                              on_delete=models.CASCADE,
-                              limit_choices_to={'is_active': True})
+    wilayah = models.ForeignKey(
+        Wilayah,
+        on_delete=models.CASCADE,
+        default=18
+    )
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        limit_choices_to={'is_active': True}
+    )
     jumlah = models.IntegerField(default=1)
+    kursi = models.CharField(max_length=20, blank=True)
     is_come = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
