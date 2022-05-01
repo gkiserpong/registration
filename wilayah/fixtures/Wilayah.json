@@ -138,7 +138,7 @@
     "model": "wilayah.wilayah",
     "pk": 16,
     "fields": {
-        "nama": "PUSPITEK",
+        "nama": "PUSPIPTEK",
         "created_at": "2021-05-22T11:42:24.972Z",
         "updated_at": "2021-05-22T11:42:24.972Z"
     }

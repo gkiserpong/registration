@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     #'rest_framework',
     'crispy_forms',
     'qr_code',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -146,8 +147,11 @@ EMAIL_HOST = 'host.gkiserpong.org'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'noreply@gkiserpong.org'
-#EMAIL_HOST_PASSWORD = str(os.environ['EMAIL_HOST_PASSWORD'])
 #EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+
+CRONJOBS = [
+    ('0 * * * *', 'event.cron.check_event_expiry')
+]
 
 
 
