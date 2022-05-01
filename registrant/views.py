@@ -5,6 +5,7 @@ from django.conf import settings
 from registrant.models import Registrant
 from .forms import RegisterForm, QueryQrForm
 from event.models import Event
+from wilayah.models import Wilayah
 from django.http import HttpResponseNotFound
 from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
@@ -23,6 +24,7 @@ def qr_check(request):
         'email' : registrant.email,
         'telepon' : registrant.telepon,
         'jumlah': registrant.jumlah,
+        'wilayah_nama': registrant.wilayah,
         'event_id': registrant.event,
         'event_nama' : event.nama,
         'event_info' : event.info,
@@ -42,6 +44,7 @@ def qr_ok(request):
         telepon = request.POST.get('telepon')
         jumlah = request.POST.get('jumlah')
         eventid = request.POST.get('event')
+        wilayahid = request.POST.get('wilayah')
 
         email_used = Registrant.objects.filter(
             email=email,
@@ -52,6 +55,8 @@ def qr_ok(request):
             return render(request, "email_used.html", {"email": email})
 
         event = Event.objects.get(id=eventid)
+        wilayah = Wilayah.objects.get(id=wilayahid)
+    
         reg = Registrant.objects.create(
             nama = nama,
             email = email,
@@ -65,8 +70,11 @@ def qr_ok(request):
             'nama': nama,
             'email': email,
             'telepon': telepon,
-            'event': eventid,
             'jumlah': jumlah,
+            'wilayah': wilayah.id,
+            'wilayah_nama': wilayah.nama,
+            #'event': eventid,
+            'event': event.id,
             'event_nama': event.nama,
             'event_info': event.info,
             'event_tanggal': event.tanggal,
@@ -98,6 +106,7 @@ def out_capacity(request,context):
 def confirmation_request(request, context):
 
     event = Event.objects.get(id=context['event'])
+    wilayah = Wilayah.objects.get(id=context['wilayah'])
 
     kapasitas_sekarang = event.kapasitas - event.jumlah_pendaftar
 
@@ -106,7 +115,10 @@ def confirmation_request(request, context):
         'email' : context['email'],
         'telepon' : context['telepon'],
         'jumlah': context['jumlah'],
-        'event_id': context['event'],
+        'wilayah_id': wilayah.id,
+        'wilayah_nama': wilayah.nama,
+        #'event_id': context['event'],
+        'event_id': event.id,
         'event_nama' : event.nama,
         'event_info' : event.info,
         'event_lokasi' : event.lokasi,
@@ -143,6 +155,7 @@ def register_request(request):
             telepon = form.cleaned_data['telepon']
             jumlah = form.cleaned_data['jumlah']
             eventid = request.POST.get('event')
+            wilayahid = request.POST.get('wilayah')
             
             context = {
                 'nama': nama,
@@ -150,10 +163,10 @@ def register_request(request):
                 'telepon': telepon,
                 'event': eventid,
                 'jumlah': jumlah,
-
+                'wilayah': wilayahid,
             }
+            
             return confirmation_request(request, context)
-
 
     else:
         event = Event.objects.filter(is_active=True)
@@ -188,6 +201,7 @@ def query_qr(request):
                     'email' : registrant.email,
                     'telepon' : registrant.telepon,
                     'jumlah': registrant.jumlah,
+                    'wilayah_nama': registrant.wilayah,
                     'event_id': registrant.event,
                     'event_nama' : event.nama,
                     'event_info' : event.info,

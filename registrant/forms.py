@@ -1,6 +1,7 @@
 from email.policy import default
 from django import forms
 from event.models import Event
+from wilayah.models import Wilayah
 from django.core.validators import RegexValidator
 
 
@@ -26,6 +27,11 @@ class RegisterForm(forms.Form):
         label="Nomor HP",
         validators=[phone_regex],
         max_length=17
+    )
+    wilayah = forms.ModelChoiceField(
+        label="Anda SIMPATISAN atau Anggota Wilayah GKI Serpong?",
+        queryset=Wilayah.objects.filter(),
+        initial=18
     )
     event = forms.ModelChoiceField(
         label="Pilih Jadwal Ibadah",

@@ -6,10 +6,16 @@
 <br />
 <div class="card">
     <div class="card-body">
+        <div class="card-title"><h1 class="text-danger">Maaf, QR Code Sudah Terpakai.</h1></div>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-body">
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h4>{{ event_info }}</h4>
         <h4>{{ event_lokasi }}</h4>
-        <h4>{{ event_tanggal|date:"l, d F Y, G:i" }}</h4>
+        <h4>{{ event_tanggal }}</h4>
     </div>
 </div>
 <br />        
@@ -22,18 +28,8 @@
         <h4>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h4>
     </div>
 </div>
-
 <br />
-<div class="card text-center">
-    <div class="card-body">
-        <div class="card-title"><h1>QR Code</h1></div>
-        <h3>Harap simpan QR ini dan tunjukkan ketika Anda Hadir</h3>
-        <h3>Tuhan Yesus Memberkati</h3>
-        <span>{% qr_from_text id size="m" image_format="png" error_correction="L" %}</span>
-    </div>
-</div>
-
-<br />
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Selesai</button>
+<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Ulangi</button>
+        
 {% endblock content %}
 
