@@ -1,3 +1,4 @@
+from datetime import timedelta
 from urllib import request
 from django.shortcuts import render, redirect
 from django.conf import settings 
@@ -8,12 +9,14 @@ from django.http import HttpResponseNotFound
 from django.views.decorators.csrf import csrf_exempt
 from django.templatetags.static import static
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.timezone import now
 
 
 @csrf_exempt
 def qr_scan(request):
     if request.POST:
         registrantid = request.POST.get('id', None)
+        force_checkin = request.POST.get('force_checkin', None)
         
         try:
             registrant = Registrant.objects.get(id=registrantid)
@@ -25,6 +28,7 @@ def qr_scan(request):
             event = Event.objects.get(id=registrant.event.id)
 
             event_context = {
+                'id' : registrant.id,
                 'nama' : registrant.nama,
                 'email' : registrant.email,
                 'telepon' : registrant.telepon,
@@ -39,21 +43,26 @@ def qr_scan(request):
                 'qr_used_at': registrant.updated_at,
             }
 
-            if registrant.is_active and not registrant.is_come:
+            # Check if now() close to event time
 
-                print(registrant.is_come)
-                print(registrant.is_active)
+            event_start = event.tanggal - timedelta(hours=1)
+            event_end = event.tanggal + timedelta(hours=2)
 
-                registrant.is_come = True
-                registrant.is_active = False
-                print(registrant.is_come)
-                print(registrant.is_active)
-                registrant.save()
+            if ((now() > event_start) and (now() < event_end)) or force_checkin:
 
-                template_to_use = "qr_scan.html"
-            
+                if registrant.is_active and not registrant.is_come:
+
+                    registrant.is_come = True
+                    registrant.is_active = False
+                    registrant.save()
+
+                    template_to_use = "qr_scan.html"
+                
+                else:
+                    template_to_use = "qr_used.html"
+
             else:
-                template_to_use = "qr_used.html"
+                template_to_use = "event_not_start.html"
 
             return render(request, template_to_use, event_context)
 
