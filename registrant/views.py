@@ -48,7 +48,8 @@ def qr_ok(request):
 
         email_used = Registrant.objects.filter(
             email=email,
-            is_come=False
+            is_come=False,
+            is_active=True
         )
     
         if email_used:
@@ -134,7 +135,8 @@ def confirmation_request(request, context):
 
     email_used = Registrant.objects.filter(
             email=context['email'],
-            is_come=False
+            is_come=False,
+            is_active=True
         )
     
     if email_used:

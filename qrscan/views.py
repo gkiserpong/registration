@@ -91,7 +91,7 @@ def pin_entry(request):
             pin = form.cleaned_data['pin']
 
             if pin == PIN:
-                scanner_uri = static('qrscan/scanner/index.html')
+                #scanner_uri = static('qrscan/scanner/index.html')
                 return render(request, "scanner.html")
 
     form = PinForm()

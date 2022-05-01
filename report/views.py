@@ -15,8 +15,6 @@ def report(request):
         if form.is_valid:
             event = Event.objects.get(id=request.POST.get('event'))
             registrant = Registrant.objects.filter(event=request.POST.get('event'))
-            #event = Event.objects.get(id=3)
-            print(event)
             context = {
                 'event': event,
                 'registrant': registrant,
