@@ -9,9 +9,9 @@
         <div class="card-title"><h1 class="text-danger">Maaf, Data tidak ditemukan.</h1></div>
         <h3>Data untuk email <strong>{{ email }}</strong> ini tidak di temukan.</h3>
         <br />
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "query" %}'">Ulangi</button>
     </div>
 </div>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "query" %}'">Ulangi</button>
 <br />        
 {% endblock content %}
 

@@ -139,10 +139,23 @@ def confirmation_request(request, context):
         )
     
     if email_used:
-        return render(request, "email_used.html", event_context)
+        # Email is used for register
+        error_context = {
+            "title" : "Maaf, Email Sudah Terpakai",
+            "message" : "Email <strong>" + email + "</strong> sudah terpakai. Mohon menggunakan email yang lain."
+        } 
+        #return render(request, "email_used.html", event_context)
+        return render(request, "error.html", error_context)
 
     if kapasitas_sekarang < int(context['jumlah']):
-        return out_capacity(request, event_context)
+        error_context = {
+            "title" : "Maaf, Kapasitas tidak cukup",
+            "message" : "Anda mendaftar untuk <strong>" 
+            + str(context['jumlah']) + "</strong> orang. Kapasitas hanya <strong>" 
+            + str(kapasitas_sekarang) + "</strong> orang."
+        }
+        return render(request, "error.html", error_context)
+        #return render(request, "out_capacity.html", event_context)
 
     return render(request, "confirmation.html", event_context)
 
@@ -178,7 +191,12 @@ def register_request(request):
         if event:
             form = RegisterForm()
         else:
-            return render(request, "no_event.html")
+            error_context = {
+                "title" : "Maaf, Tidak ada Ibadah Onsite",
+                "message" : "Saat ini, kami tidak menemukan data Ibadah Onsite di database."
+            }   
+            return render(request, "error.html", error_context) 
+            #return render(request, "no_event.html")
 
     return render(request, "register_form.html", {"form": form})
 
@@ -223,15 +241,27 @@ def qr_query(request):
                 return render(request, "qr_check.html", event_context)
             
             else:
-                return render(request, "qr_not_found.html", {'email': email})
+                # QR is not found
+                error_context = {
+                    "title" : "Maaf, Data tidak ditemukan",
+                    "message" : "Data untuk email <strong>" + email + "</strong> ini tidak di temukan."
+                }
+                #return render(request, "qr_not_found.html", {'email': email})
+                return render(request, "error.html", error_context)
         
     else:
         event = Event.objects.filter(is_active=True)
         if event:
             form = QueryQrForm()
             return render(request, "qr_query.html", {"form": form})
-        
-    return render(request, "no_event.html")
+
+    # No Event
+    error_context = {
+        "title" : "Maaf, Tidak ada Ibadah Onsite",
+        "message" : "Saat ini, kami tidak menemukan data Ibadah Onsite di database."
+    }   
+    return render(request, "error.html", error_context) 
+    #return render(request, "no_event.html")
 
 
 def qr_cancel(request):
@@ -269,6 +299,12 @@ def qr_cancel(request):
             return render(request, "qr_cancel.html", event_context)
         
         else:
-            return render(request, "not_found.html")
+            # Not Found Registrant
+            error_context = {
+                "title" : "Maaf, Data tidak ditemukan",
+                "message" : "Data tidak di temukan di database kami."
+            }
+            return render(request, "error.html", error_context)
+            #return render(request, "not_found.html")
 
     return HttpResponseNotFound("404")
