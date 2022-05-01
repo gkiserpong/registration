@@ -12,6 +12,7 @@ class Event(models.Model):
     tanggal = models.DateTimeField()
     kapasitas = models.IntegerField()
     jumlah_pendaftar = models.IntegerField(default=0)
+    kehadiran = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
