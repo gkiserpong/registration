@@ -11,11 +11,11 @@
         <h3>Tuhan Yesus Memberkati</h3>
         <p>Kami juga sudah mengirimkan pesan ke email Anda di <strong>{{ email }}</strong></p>
         <span>{% qr_from_text id size="m" image_format="png" error_correction="L" %}</span>
+        <br />
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Selesai</button>
     </div>
 </div>
 
-<br />
-<button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Selesai</button>
 
 {% endblock content %}
 

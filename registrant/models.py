@@ -44,6 +44,14 @@ def auto_create_member(sender, instance, created, **kwargs):
         first_member = Member(nama=instance.nama, registrant=instance)
         first_member.save()
 
+@receiver(post_save, sender=Registrant)
+def auto_increase_jumlah_pendaftar(sender, instance, created, **kwargs):
+    if created:
+        registrant = Registrant.objects.get(id=instance.id)
+        event = Event.objects.get(id=registrant.event.id)
+        event.jumlah_pendaftar += registrant.jumlah
+        event.save()
+
 # Member
 class Member(models.Model):
     nama = models.CharField(max_length=100)
@@ -57,11 +65,3 @@ class Member(models.Model):
 
     def __str__(self):
         return "%s" % (self.nama)
-
-@receiver(post_save, sender=Member)
-def auto_increase_jumlah_pendaftar(sender, instance, created, **kwargs):
-    if created:
-        registrant = Registrant.objects.get(id=instance.registrant.id)
-        event = Event.objects.get(id=registrant.event.id)
-        event.jumlah_pendaftar += 1
-        event.save()

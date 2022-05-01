@@ -62,9 +62,10 @@ def qr_ok(request):
             email = email,
             telepon = telepon,
             event = event,
-            jumlah = jumlah
+            jumlah = jumlah,
+            wilayah = wilayah,
         )
-
+        
         context = {
             'id' : reg.id,
             'nama': nama,
@@ -90,7 +91,11 @@ def qr_ok(request):
 
         message = EmailMessage(subject, html_message, from_email, [to_email])
         message.content_subtype = 'html' # this is required because there is no plain text email message
-        message.send()
+        
+        try:
+            message.send()
+        except:
+            pass
 
         return render(request, "qr_ok.html", context)
 
@@ -178,7 +183,7 @@ def register_request(request):
     return render(request, "register_form.html", {"form": form})
 
 
-def query_qr(request):
+def qr_query(request):
     if request.method == 'POST':
         form = QueryQrForm(request.POST)
         
@@ -192,6 +197,11 @@ def query_qr(request):
                     event = eventid,
                     is_active = True
                 )
+                is_found = True
+            except:
+                is_found = False
+
+            if is_found:
 
                 event = Event.objects.get(id=registrant.event.id)
 
@@ -212,13 +222,53 @@ def query_qr(request):
 
                 return render(request, "qr_check.html", event_context)
             
-            except:
-                return render(request, "not_found.html", {'email': email})
+            else:
+                return render(request, "qr_not_found.html", {'email': email})
         
     else:
         event = Event.objects.filter(is_active=True)
         if event:
             form = QueryQrForm()
-            return render(request, "query_qr.html", {"form": form})
+            return render(request, "qr_query.html", {"form": form})
         
     return render(request, "no_event.html")
+
+
+def qr_cancel(request):
+
+    if request.POST:
+        try:
+            registrant = Registrant.objects.get(id=request.POST.get('id'))
+            is_found = True
+
+        except:
+            is_found = False
+
+        if is_found:
+            event = Event.objects.get(id=registrant.event.id)
+            event.jumlah_pendaftar -= registrant.jumlah
+            event.save()
+
+            event_context = {
+                'id' : registrant.id,
+                'nama' : registrant.nama,
+                'email' : registrant.email,
+                'telepon' : registrant.telepon,
+                'jumlah': registrant.jumlah,
+                'wilayah_nama': registrant.wilayah,
+                'event_id': registrant.event,
+                'event_nama' : event.nama,
+                'event_info' : event.info,
+                'event_lokasi' : event.lokasi,
+                'event_tanggal' : event.tanggal,
+                'event_kapasitas' : event.kapasitas,
+            }
+
+            registrant.delete()
+
+            return render(request, "qr_cancel.html", event_context)
+        
+        else:
+            return render(request, "not_found.html")
+
+    return HttpResponseNotFound("404")

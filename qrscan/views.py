@@ -17,6 +17,11 @@ def qr_scan(request):
         
         try:
             registrant = Registrant.objects.get(id=registrantid)
+            is_found = True
+        except ObjectDoesNotExist:
+            is_found = False
+        
+        if is_found:
             event = Event.objects.get(id=registrant.event.id)
 
             event_context = {
@@ -24,16 +29,20 @@ def qr_scan(request):
                 'email' : registrant.email,
                 'telepon' : registrant.telepon,
                 'jumlah': registrant.jumlah,
-                'wilayah_name': registrant.wilayah,
+                'wilayah_nama': registrant.wilayah,
                 'event_id': registrant.event,
                 'event_nama' : event.nama,
                 'event_info' : event.info,
                 'event_lokasi' : event.lokasi,
                 'event_tanggal' : event.tanggal,
                 'event_kapasitas' : event.kapasitas,
+                'qr_used_at': registrant.updated_at,
             }
 
-            if registrant.is_active == True:
+            if registrant.is_active and not registrant.is_come:
+
+                print(registrant.is_come)
+                print(registrant.is_active)
 
                 registrant.is_come = True
                 registrant.is_active = False
@@ -41,13 +50,15 @@ def qr_scan(request):
                 print(registrant.is_active)
                 registrant.save()
 
-                return render(request, "qr_scan.html", event_context)
+                template_to_use = "qr_scan.html"
             
             else:
-                return render(request, "qr_used.html", event_context)
+                template_to_use = "qr_used.html"
+
+            return render(request, template_to_use, event_context)
 
 
-        except ObjectDoesNotExist:
+        else:
             return render(request, "qr_not_found.html")
 
     return HttpResponseNotFound("404")

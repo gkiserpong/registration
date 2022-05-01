@@ -7,11 +7,11 @@
 <div class="card">
     <div class="card-body">
         <div class="card-title"><h1 class="text-danger">Maaf, Data tidak ada.</h1></div>
-        <h3>Data QR tidak ditemukan di database</h3>
+        <h3>Data QR tidak ditemukan di database kami.</h3>
+        <br />
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Ulangi</button>
     </div>
 </div>
-<br />
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Ulangi</button>
-        
+<br />        
 {% endblock content %}
 

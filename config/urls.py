@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from registrant.views import register_request, qr_check, qr_ok, query_qr
+from registrant.views import register_request, qr_check, qr_ok, qr_query, qr_cancel
 from qrscan.views import qr_scan, pin_entry
 from landing.views import landing
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('qr_ok', qr_ok, name="qr_ok"),
     path('qr_check', qr_check, name="qr_check"),
     path('qr_scan', qr_scan, name="qr_scan"),
-    path('query', query_qr, name="query"),
+    path('cancel', qr_cancel, name="cancel"),
+    path('query', qr_query, name="query"),
     path('pin', pin_entry, name="pin"),
 ]

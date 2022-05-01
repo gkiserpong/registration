@@ -4,9 +4,10 @@
 {% block content %}
 
 <br />
-<div class="card">
+<div class="card text-center bg-danger text-light">
     <div class="card-body">
-        <div class="card-title"><h1 class="text-danger">Maaf, QR Code Sudah Terpakai.</h1></div>
+        <div class="card-title"><h1 class="text-light">Maaf, QR Code Sudah Terpakai!</h1></div>
+        <h3>QR Code sudah terpakai pada {{ qr_used_at|date:"l, d F Y, G:i" }}
     </div>
 </div>
 <br />
@@ -15,7 +16,7 @@
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h4>{{ event_info }}</h4>
         <h4>{{ event_lokasi }}</h4>
-        <h4>{{ event_tanggal }}</h4>
+        <h4>{{ event_tanggal|date:"l, d F Y, G:i" }}</h4>
     </div>
 </div>
 <br />        
@@ -26,10 +27,10 @@
         <h4>{{ telepon }}</h4>
         <h4>{{ wilayah_nama }}</h4>
         <h4>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h4>
+        <br />
+        <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Ulangi</button>
     </div>
 </div>
-<br />
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Ulangi</button>
-        
+<br />        
 {% endblock content %}
 

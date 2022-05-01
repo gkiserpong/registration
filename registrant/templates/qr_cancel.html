@@ -4,7 +4,14 @@
 {% block content %}
 
 <br />
-<div class="card">
+<div class="card text-center bg-warning">
+    <div class="card-body">
+        <div class="card-title"><h1>Pembatalan QR Code</h1></div>
+        <h3>Pendaftaran sudah berhasil dibatalkan.</h3>
+    </div>
+</div>
+<br />
+<div class="card bg-secondary">
     <div class="card-body">
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h4>{{ event_info }}</h4>
@@ -13,31 +20,15 @@
     </div>
 </div>
 <br />        
-<div class="card">
+<div class="card bg-secondary">
     <div class="card-body">
         <div class="card-title"><h1>{{ nama }}</h1></div>
         <h4>{{ email }}</h4>
         <h4>{{ telepon }}</h4>
         <h4>{{ wilayah_nama }}</h4>
         <h4>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h4>
-    </div>
-</div>
-
-<br />
-<div class="card text-center">
-    <div class="card-body">
-        <div class="card-title"><h1>QR Code</h1></div>
-        <h3>Harap simpan QR ini dan tunjukkan ketika Anda Hadir</h3>
-        <h3>Tuhan Yesus Memberkati</h3>
-        <span>{% qr_from_text id size="m" image_format="png" error_correction="L" %}</span>
         <br />
         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{% url "landing" %}'">Selesai</button>
-        <br />
-        <form action="{% url 'cancel' %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{ id }}">
-            <button type="submit" class="btn btn-warning btn-lg btn-block">Batalkan</button>
-        </form>
     </div>
 </div>
 

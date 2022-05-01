@@ -21,10 +21,11 @@ class Event(models.Model):
         verbose_name_plural = "Events"
 
     def __str__(self):
-        return "%s - %s, %s - Kapasitas: %s" % (self.nama, 
+        return "%s - %s, %s - Kapasitas: %s" % (
+            self.nama, 
             _(self.tanggal.strftime('%A')),
             _(self.tanggal.strftime('%H:%M %d/%m/%Y')),
-            (self.kapasitas-self.jumlah_pendaftar))
+            (self.kapasitas - self.jumlah_pendaftar))
         #return "%s (%s)" % (self.nama, (self.kapasitas-self.jumlah_pendaftar))
 
     def clean(self):
@@ -32,5 +33,4 @@ class Event(models.Model):
             raise ValidationError(_("Tanggal tidak bisa di masa lalu!"))
         if self.kapasitas < 0:
             raise ValidationError(_("Kapasitas tidak tidak boleh negatif!"))
-        
         

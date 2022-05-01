@@ -16,7 +16,7 @@
         <div class="card-title"><h1>{{ event_nama }}</h1></div>
         <h4>{{ event_info }}</h4>
         <h4>{{ event_lokasi }}</h4>
-        <h4>{{ event_tanggal }}</h4>
+        <h4>{{ event_tanggal|date:"l, d F Y, G:i" }}</h4>
     </div>
 </div>
 <br />        
@@ -27,10 +27,10 @@
         <h4>{{ telepon }}</h4>
         <h4>{{ wilayah_nama }}</h4>
         <h4>Jumlah Yang Datang: <strong>{{  jumlah }}</strong> orang</h4>
+        <br />
+        <a href="{% url 'landing' %}" class="btn btn-lg btn-block btn-primary">Selesai</a>
     </div>
 </div>
-
 <br />
-<a href="{% url 'qr_scan' %}" class="btn btn-lg btn-block btn-primary">Selesai</a>
 {% endblock content %}
 
