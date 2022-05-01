@@ -122,7 +122,6 @@ def confirmation_request(request, context):
         'jumlah': context['jumlah'],
         'wilayah_id': wilayah.id,
         'wilayah_nama': wilayah.nama,
-        #'event_id': context['event'],
         'event_id': event.id,
         'event_nama' : event.nama,
         'event_info' : event.info,
@@ -142,7 +141,9 @@ def confirmation_request(request, context):
         # Email is used for register
         error_context = {
             "title" : "Maaf, Email Sudah Terpakai",
-            "message" : "Email <strong>" + email + "</strong> sudah terpakai. Mohon menggunakan email yang lain."
+            "message" : "Email <strong>" 
+                + str(context['email']) 
+                + "</strong> sudah terpakai. Mohon menggunakan email yang lain."
         } 
         #return render(request, "email_used.html", event_context)
         return render(request, "error.html", error_context)
@@ -151,8 +152,8 @@ def confirmation_request(request, context):
         error_context = {
             "title" : "Maaf, Kapasitas tidak cukup",
             "message" : "Anda mendaftar untuk <strong>" 
-            + str(context['jumlah']) + "</strong> orang. Kapasitas hanya <strong>" 
-            + str(kapasitas_sekarang) + "</strong> orang."
+                + str(context['jumlah']) + "</strong> orang. Kapasitas hanya <strong>" 
+                + str(kapasitas_sekarang) + "</strong> orang."
         }
         return render(request, "error.html", error_context)
         #return render(request, "out_capacity.html", event_context)
@@ -162,7 +163,6 @@ def confirmation_request(request, context):
 #register_request
 def register_request(request):
     if request.method == 'POST':
-        #form_register = RegisterForm(request.POST)
         
         form = RegisterForm(request.POST)
 
@@ -203,6 +203,7 @@ def register_request(request):
 
 def qr_query(request):
     if request.method == 'POST':
+        
         form = QueryQrForm(request.POST)
         
         if form.is_valid():
