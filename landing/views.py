@@ -11,3 +11,4 @@ def landing(request):
     random_verse = Verse.objects.get(pk=random_pk)
     
     return render(request, "landing.html", {"verse": random_verse })
+    

@@ -52,9 +52,18 @@ def qr_scan(request):
 
                 if registrant.is_active and not registrant.is_come:
 
+                    # Tandai Registrant
                     registrant.is_come = True
                     registrant.is_active = False
                     registrant.save()
+
+                    # Tambah event.kehadiran
+                    event.kehadiran += registrant.jumlah
+                    event.save()
+
+                    """
+                    Disini buat logic untuk kursi jemaat
+                    """
 
                     template_to_use = "qr_scan.html"
                 
