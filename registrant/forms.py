@@ -42,8 +42,8 @@ class RegisterForm(forms.Form):
         label="Berapa yang datang termasuk Anda?",
         choices=MEMBER_CHOICES,
         initial=1
-    )  
-
+    ) 
+    
 
 class QueryQrForm(forms.Form):
     email = forms.EmailField(label="Alamat Email yang digunakan untuk mendaftar")

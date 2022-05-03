@@ -5,15 +5,15 @@ from .models import Registrant, Member
 
 class RegistrantAdmin(admin.ModelAdmin):
     fields = ['nama', 'email', 'telepon', 'wilayah', 
-            'event', 'jumlah', 'is_come', 'is_active']
+            'event', 'jumlah', 'kursi', 'is_come', 'is_active']
     
     readonly_fields=('nama', 'email', 'telepon', 
-            'wilayah', 'event', 'jumlah', 'is_come', 'is_active', )
+            'wilayah', 'event', 'jumlah', 'kursi', 'is_come', 'is_active', )
     
     list_display = ('id', 'nama', 'email', 'telepon', 'wilayah', 
-            'event', 'jumlah', 'is_come', 'is_active')
+            'event', 'jumlah', 'kursi', 'is_come', 'is_active')
     
-    list_filter = ('event',)
+    list_filter = ('nama', 'kursi',)
 
 #class MemberAdmin(admin.ModelAdmin):
 #    fields = ['nama', 'registrant']

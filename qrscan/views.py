@@ -1,4 +1,5 @@
 from datetime import timedelta
+from ssl import SSL_ERROR_WANT_CONNECT
 from urllib import request
 from django.shortcuts import render, redirect
 from django.conf import settings 
@@ -10,6 +11,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.templatetags.static import static
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
+
+
+# Seat Number
+def get_seat(start, value):
+
+    seat_no = ""
+    for x in range(start, start+value):
+        seat_no += str(x) + ", " 
+    
+    return seat_no[:len(seat_no)-2]    
 
 
 @csrf_exempt
@@ -52,6 +63,12 @@ def qr_scan(request):
 
                 if registrant.is_active and not registrant.is_come:
 
+                    """
+                    Disini buat logic untuk kursi jemaat
+                    """
+                    registrant.kursi = get_seat(event.kehadiran+1, registrant.jumlah)
+                    event_context['seat_no'] = registrant.kursi
+
                     # Tandai Registrant
                     registrant.is_come = True
                     registrant.is_active = False
@@ -60,10 +77,6 @@ def qr_scan(request):
                     # Tambah event.kehadiran
                     event.kehadiran += registrant.jumlah
                     event.save()
-
-                    """
-                    Disini buat logic untuk kursi jemaat
-                    """
 
                     template_to_use = "qr_scan.html"
                 
