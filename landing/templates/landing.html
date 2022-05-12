@@ -21,6 +21,7 @@
     <div class="cover-container">
       <div class="masthead clearfix">
         <div class="inner">
+          <a href="https://gkiserpong.org"><img class="rounded-circle" src="{% static 'landing/img/gkis.jpeg' %}"></a>
         <!--  <h3 class="masthead-brand">Coming Soon</h3> -->
 	  <!--
           <nav class="nav nav-masthead">
@@ -31,9 +32,10 @@
           </nav>
 	  -->
         </div>
-      </div>      
+      </div>    
+      <br />  
       <div class="inner cover">
-        <h1>“{{ verse.ayat }}”</h1>
+        <h2>“{{ verse.ayat }}”</h2>
         <p class="lead cover-copy">{{ verse.pasal }}</p>
         <p class="lead">
           <button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "register" %}'">Daftar Ibadah Onsite</button>
@@ -47,10 +49,12 @@
         <p class="lead">
           <button type="button" class="btn btn-lg btn-default btn-notify" onclick="location.href='{% url "report" %}'">Report Ibadah Onsite</button>
         </p>
+
       </div>
       <div class="mastfoot">
         <div class="inner">
-          <p>&copy; <a href="https://gkiserpong.org/" target="_blank">GKI Serpong</a>.</p>
+            <p class="text-light">Telephone: 021-5370366; Email: <a href="mailto:kantor@gkiserpong.org" target="_blank">kantor@gkiserpong.org</a> 
+              <br />&copy; <a href="https://gkiserpong.org/" target="_blank">GKI Serpong</a>.</p>
         </div>
       </div>
       <div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="subscribeModalLabel" aria-hidden="true">
