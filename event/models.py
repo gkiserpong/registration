@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 # Create your models here.
 # Event
@@ -22,10 +23,11 @@ class Event(models.Model):
         verbose_name_plural = "Events"
 
     def __str__(self):
+        tanggal = timezone.localtime(self.tanggal)
         return "%s - %s, %s - Kapasitas: %s" % (
             self.nama, 
-            _(self.tanggal.strftime('%A')),
-            _(self.tanggal.strftime('%H:%M %d/%m/%Y')),
+            _(tanggal.strftime('%A')),
+            _(tanggal.strftime('%H:%M %d/%m/%Y')),
             (self.kapasitas - self.jumlah_pendaftar))
         #return "%s (%s)" % (self.nama, (self.kapasitas-self.jumlah_pendaftar))
 
