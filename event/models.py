@@ -24,7 +24,7 @@ class Event(models.Model):
 
     def __str__(self):
         tanggal = timezone.localtime(self.tanggal)
-        return "%s - %s, %s - Kapasitas: %s" % (
+        return "%s - %s, %s - Sisa Kuota: %s" % (
             self.nama, 
             _(tanggal.strftime('%A')),
             _(tanggal.strftime('%H:%M %d/%m/%Y')),
