@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+
+class Pin(models.Model):
+    pin = models.CharField(max_length=6, default='778899')
