@@ -12,7 +12,7 @@ class Event(models.Model):
     lokasi = models.CharField(max_length=100, default="GKI Serpong")
     tanggal = models.DateTimeField()
     kapasitas = models.IntegerField()
-    block_kursi = models.CharField(max_length=100, blank=True)
+    blok_kursi = models.CharField(max_length=100, blank=True)
     jumlah_pendaftar = models.IntegerField(default=0)
     kehadiran = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
