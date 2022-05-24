@@ -109,7 +109,7 @@ def pin_entry(request):
 
             if pin == PIN:
                 #scanner_uri = static('qrscan/scanner/index.html')
-                request.session['qrscan_pin'] = PIN
+                request.session['is_pin'] = 'OK'
                 return render(request, "scanner.html")
             else:
                 pin_salah = 'PIN yang Anda masukan salah'
