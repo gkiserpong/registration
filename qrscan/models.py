@@ -6,3 +6,6 @@ class Pin(models.Model):
 
     class Meta:
         db_table = 'pin'
+
+    def __str__(self):
+        return 'PIN'

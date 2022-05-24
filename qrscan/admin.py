@@ -15,5 +15,4 @@ class PinAdmin(admin.ModelAdmin):
         return False
 
 
-
 admin.site.register(Pin, PinAdmin)
