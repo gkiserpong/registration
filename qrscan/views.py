@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.templatetags.static import static
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.timezone import now
+from .models import Pin
 
 
 # Seat Number
@@ -96,7 +97,10 @@ def qr_scan(request):
 
 
 def pin_entry(request):
-    PIN = "778899"
+    p = Pin.objects.get(id=1)
+    #PIN = "778899"
+    PIN = p.pin
+    pin_salah = ''
     if request.POST:
         form = PinForm(request.POST)
 
@@ -105,8 +109,11 @@ def pin_entry(request):
 
             if pin == PIN:
                 #scanner_uri = static('qrscan/scanner/index.html')
+                request.session['qrscan_pin'] = PIN
                 return render(request, "scanner.html")
+            else:
+                pin_salah = 'PIN yang Anda masukan salah'
 
     form = PinForm()
 
-    return render(request, "pin_entry.html", {'form': form})
+    return render(request, "pin_entry.html", {'form': form, 'pin_salah': pin_salah})
