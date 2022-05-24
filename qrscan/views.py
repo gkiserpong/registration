@@ -84,8 +84,11 @@ def qr_scan(request):
                 else:
                     template_to_use = "qr_used.html"
 
-            else:
+            #else:
+            elif registrant.is_active and not registrant.is_come:
                 template_to_use = "event_not_start.html"
+            else:
+                template_to_use = 'qr_used.html'
 
             return render(request, template_to_use, event_context)
 
@@ -117,3 +120,7 @@ def pin_entry(request):
     form = PinForm()
 
     return render(request, "pin_entry.html", {'form': form, 'pin_salah': pin_salah})
+
+
+def scanner(request):
+    return render(request, 'scanner.html')

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from registrant.views import register_request, qr_check, qr_ok, qr_query, qr_cancel
-from qrscan.views import qr_scan, pin_entry
+from qrscan.views import qr_scan, pin_entry, scanner
 from landing.views import landing
 from report.views import report
 
@@ -26,4 +26,5 @@ urlpatterns = [
     path('query', qr_query, name="query"),
     path('pin', pin_entry, name="pin"),
     path('report', report, name="report"),
+    path('scanner', scanner, name="scanner"),
 ]
