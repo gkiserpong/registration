@@ -4,6 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <title>QR Scanner GKIS</title>
+    <style>
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04AA6D;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-outline {
+  color: #4fbfa8;
+  background-color: #ffffff;
+  border-color: #4fbfa8;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  padding: 14px 28px;
+}
+
+.btn-outline {
+  color: #4fbfa8;
+  background-color: #ffffff;
+  border-color: #4fbfa8;
+  font-weight: bold;
+  border-radius: 0;
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  padding: 14px 28px;
+}
+
+.btn-outline:hover,
+.btn-outline:active,
+.btn-outline:focus,
+.btn-outline.active {
+  display: block;
+  background: #4fbfa8;
+  color: #ffffff;
+  border-color: #4fbfa8;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  padding: 14px 28px;
+
+}
+
+
+.btn-colour-1 {
+  color: #fff;
+  background-color: #004E64;
+  border-color: #004E64;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  border-radius: 0;
+}
+
+.btn-colour-1:hover,
+.btn-colour-1:active,
+.btn-colour-1:focus,
+.btn-colour-1.active {
+  /* let's darken #004E64 a bit for hover effect */
+  background: #003D4F;
+  color: #ffffff;
+  border-color: #003D4F;
+}
+    </style>
 </head>
 <body style="background-image: url('{% static 'landing/img/cover.jpg' %}');">
 <!--<h1 style="text-align: center;">Scan QR Code</h1>-->
@@ -16,11 +87,16 @@
 <input id="show-scan-region" value="0" type="hidden">
 <input id="inversion-mode-select" value="original" type="hidden">
 
+<!--
 <h5 id="cam-qr-result" style="text-align: center;">None</h5>
 <br>
 <h5 id="cam-qr-result-timestamp" style="text-align: center;"></h5>
+-->
 <br>
 
+<button type="button" class="btn btn-outline" onclick="location.href='{% url "landing" %}'">Kembali Ke Halaman Depan</button>
+<br />
+<br />
 <!--<script src="../qr-scanner.umd.min.js"></script>-->
 <!--<script src="../qr-scanner.legacy.min.js"></script>-->
 <script type="module">
