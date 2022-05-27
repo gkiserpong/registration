@@ -11,6 +11,4 @@ def landing(request):
     return render(request, 'landing.html', {'verse': random_verse })
 
 
-def landing_login(request):
-    return render(request, 'login.html')
     
