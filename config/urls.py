@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from registrant.views import register_request, qr_check, qr_ok, qr_query, qr_cancel
 from qrscan.views import qr_scan, pin_entry, scanner
-from landing.views import landing
+from landing.views import landing, landing_login
 from report.views import report
 
 #from rest_framework import routers
@@ -16,6 +16,7 @@ from report.views import report
 
 urlpatterns = [
     path('', landing, name="landing"),
+    path('admin/login/', landing_login, name='landing_login'),
     path('admin/', admin.site.urls),
     #path('api/', include('rest_framework.urls', namespace='rest_framework')),
     path('register', register_request, name="register"),
