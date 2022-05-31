@@ -26,7 +26,7 @@ class RegistrantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     readonly_fields=('nama', 'email', 'telepon', 
             'wilayah', 'event', 'jumlah', 'kursi', 'is_come', 'is_active', )
     
-    list_display = ('id', 'nama', 'email', 'telepon', 'wilayah', 
+    list_display = ('nama', 'email', 'telepon', 'wilayah',
             'event', 'jumlah', 'kursi', 'is_come', 'is_active')
 
     list_filter = ['event__nama_event',]
