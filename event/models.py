@@ -16,6 +16,7 @@ class Event(models.Model):
     jumlah_pendaftar = models.IntegerField(default=0)
     kehadiran = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    nama_event = models.CharField(max_length=100, blank=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -30,11 +31,17 @@ class Event(models.Model):
             _(tanggal.strftime('%A')),
             _(tanggal.strftime('%H:%M %d/%m/%Y')),
             (self.kapasitas - self.jumlah_pendaftar))
-        #return "%s (%s)" % (self.nama, (self.kapasitas-self.jumlah_pendaftar))
 
     def clean(self):
         if self.tanggal < now():
             raise ValidationError(_("Tanggal tidak bisa di masa lalu!"))
         if self.kapasitas < 0:
             raise ValidationError(_("Kapasitas tidak tidak boleh negatif!"))
-        
+
+    def save(self, *args, **kwargs):
+        tanggal = timezone.localtime(self.tanggal)
+        self.name_event = '%s - %s, %s' % (
+            self.nama,
+            _(tanggal.strftime('%A')), _(tanggal.strftime('%H:%M %d/%m/%Y'))
+        )
+        return super(Event, self).save(*args, **kwargs)
