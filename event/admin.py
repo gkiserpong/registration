@@ -9,6 +9,6 @@ class EventAdmin(admin.ModelAdmin):
     readonly_fields=('jumlah_pendaftar', 'kehadiran', 'is_active', )
     
     list_display = ['nama', 'tanggal', 'lokasi',
-            'kapasitas', 'jumlah_pendaftar', 'is_active']
+            'kapasitas', 'jumlah_pendaftar', 'kehadiran', 'is_active']
 
 admin.site.register(Event, EventAdmin)

@@ -4,6 +4,7 @@ from django.utils.timezone import now
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
+
 # Create your models here.
 # Event
 class Event(models.Model):
@@ -34,9 +35,11 @@ class Event(models.Model):
 
     def clean(self):
         if self.tanggal < now():
-            raise ValidationError(_("Tanggal tidak bisa di masa lalu!"))
+            raise ValidationError({'tanggal': _("Tanggal tidak bisa di masa lalu!")})
         if self.kapasitas < 0:
-            raise ValidationError(_("Kapasitas tidak tidak boleh negatif!"))
+            raise ValidationError({'kapasita': _("Kapasitas tidak tidak boleh negatif!")})
+        if self.kapasitas < self.jumlah_pendaftar:
+            raise ValidationError({'kapasitas': _("Kapasitas tidak boleh lebih kecil dari Jumlah Pendaftar")})
 
     def save(self, *args, **kwargs):
         tanggal = timezone.localtime(self.tanggal)
