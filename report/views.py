@@ -26,8 +26,6 @@ def report(request):
 
         return render(request, "report_form.html", {'form': form})
 
-
-
     else:
         form = ReportForm()
     

@@ -29,6 +29,7 @@ def qr_scan(request):
     if request.POST:
         registrantid = request.POST.get('id', None)
         force_checkin = request.POST.get('force_checkin', None)
+        #print(registrantid)
         
         try:
             registrant = Registrant.objects.get(id=registrantid)
@@ -63,6 +64,9 @@ def qr_scan(request):
             if ((now() > event_start) and (now() < event_end)) or force_checkin:
 
                 if registrant.is_active and not registrant.is_come:
+                    #print(registrant.id)
+                    #print(registrant.is_active)
+                    #print(registrant.is_come)
 
                     """
                     Disini buat logic untuk kursi jemaat
@@ -80,18 +84,23 @@ def qr_scan(request):
                     event.save()
 
                     template_to_use = "qr_scan.html"
+                    #print(template_to_use)
+                    #return render(request, template_to_use, event_context)
                 
                 else:
                     template_to_use = "qr_used.html"
 
-            #else:
-            elif registrant.is_active and not registrant.is_come:
-                template_to_use = "event_not_start.html"
+                #print(template_to_use)
+                #return render(request, template_to_use, event_context)
+
             else:
-                template_to_use = 'qr_used.html'
+                if registrant.is_active and not registrant.is_come:
+                    template_to_use = "event_not_start.html"
+                else:
+                    template_to_use = 'qr_used.html'
 
+            print(template_to_use)
             return render(request, template_to_use, event_context)
-
 
         else:
             return render(request, "qr_not_found.html")
