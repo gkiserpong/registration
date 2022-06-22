@@ -4,6 +4,7 @@ diff-match-patch==20200713
 Django==3.2.12
 django-crispy-forms==1.11.1
 django-crontab==0.7.1
+django-dbbackup==3.3.0
 django-import-export==2.8.0
 django-jazzmin==2.5.0
 django-qr-code==2.0.0
@@ -17,6 +18,7 @@ pytz==2022.1
 PyYAML==6.0
 qrcode==7.3.1
 segno==1.4.1
+six==1.16.0
 sqlparse==0.4.2
 tablib==3.2.1
 xlrd==2.0.1
