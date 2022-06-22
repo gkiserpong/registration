@@ -27,11 +27,13 @@ class Event(models.Model):
 
     def __str__(self):
         tanggal = timezone.localtime(self.tanggal)
+        sisa_kapasitas = self.kapasitas - self.jumlah_pendaftar
+        sisa_kapasitas = sisa_kapasitas if sisa_kapasitas > 0 else 0
         return "%s - %s, %s - Sisa Kuota: %s" % (
             self.nama, 
             _(tanggal.strftime('%A')),
             _(tanggal.strftime('%H:%M %d/%m/%Y')),
-            (self.kapasitas - self.jumlah_pendaftar))
+            (sisa_kapasitas))
 
     def clean(self):
         if self.tanggal < now():
