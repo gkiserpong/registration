@@ -29,9 +29,10 @@
     for (var i = 0; i < eventId.length; i++) {
         if (eventId[i].className == "form-check-label") {
             eventText = eventId[i].innerText;
-            eventCap = eventText.split("s: ")
+            eventCap = eventText.split("s: ");
             //console.log(eventId[i]);
             //if (eventCap[1] == "0") {
+            console.log(eventCap[1]);
             if (parseInt(eventCap[1]) <= 0) {
                 eventIdText = eventId[i].htmlFor;
                 checkId = document.getElementById(eventIdText);
