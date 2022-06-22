@@ -28,13 +28,13 @@
     //console.log(eventId);
     for (var i = 0; i < eventId.length; i++) {
         if (eventId[i].className == "form-check-label") {
-            console.log(i);
+            //console.log(i);
             let eventText = eventId[i].innerText;
-            console.log(eventText);
+            //console.log(eventText);
             let eventCap = eventText.split("Kuota: ");
             //console.log(eventId[i]);
             //if (eventCap[1] == "0") {
-            console.log(eventCap);
+            //console.log(eventCap);
             if (parseInt(eventCap[1]) <= 0) {
                 let eventIdText = eventId[i].htmlFor;
                 let checkId = document.getElementById(eventIdText);
