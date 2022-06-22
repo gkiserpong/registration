@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'qr_code',
     'django_crontab',
+    'dbbackup',
 ]
 
 MIDDLEWARE = [
@@ -288,3 +289,7 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "cosmo",
     #"dark_mode_theme": "lux",
 }
+
+# DBBACKUP
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
