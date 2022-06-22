@@ -58,7 +58,7 @@ def qr_scan(request):
 
             # Check if now() close to event time
 
-            event_start = event.tanggal - timedelta(hours=1)
+            event_start = event.tanggal - timedelta(hours=2)
             event_end = event.tanggal + timedelta(hours=2)
 
             if ((now() > event_start) and (now() < event_end)) or force_checkin:
