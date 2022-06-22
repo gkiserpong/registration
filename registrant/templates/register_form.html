@@ -24,18 +24,18 @@
 <br />
 
 <script>
-    eventId = document.querySelectorAll('[for*="id_event_"]');
+    let eventId = document.querySelectorAll('[for*="id_event_"]');
     //console.log(eventId);
     for (var i = 0; i < eventId.length; i++) {
         if (eventId[i].className == "form-check-label") {
-            eventText = eventId[i].innerText;
-            eventCap = eventText.split("s: ");
+            let eventText = eventId[i].innerText;
+            let eventCap = eventText.split("s: ");
             //console.log(eventId[i]);
             //if (eventCap[1] == "0") {
             console.log(eventCap[1]);
             if (parseInt(eventCap[1]) <= 0) {
-                eventIdText = eventId[i].htmlFor;
-                checkId = document.getElementById(eventIdText);
+                let eventIdText = eventId[i].htmlFor;
+                let checkId = document.getElementById(eventIdText);
                 checkId.disabled = true;
                 console.log(checkId);
             } 
