@@ -17,6 +17,7 @@ class Event(models.Model):
     jumlah_pendaftar = models.IntegerField(default=0)
     kehadiran = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    is_full_capacity = models.BooleanField(default=False)
     nama_event = models.CharField(max_length=100, blank=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -49,4 +50,7 @@ class Event(models.Model):
             self.nama,
             _(tanggal.strftime('%A')), _(tanggal.strftime('%H:%M %d/%m/%Y'))
         )
+        if self.jumlah_pendaftar >= self.kapasitas and not self.is_full_capacity:
+            self.is_full_capacity = True
+
         return super(Event, self).save(*args, **kwargs)

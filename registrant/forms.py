@@ -35,7 +35,7 @@ class RegisterForm(forms.Form):
     )
     event = forms.ModelChoiceField(
         label="Pilih Jadwal Ibadah",
-        queryset=Event.objects.filter(is_active=True),
+        queryset=Event.objects.filter(is_active=True, is_full_capacity=False),
         widget=forms.RadioSelect()
     )
     jumlah = forms.ChoiceField(
