@@ -18,7 +18,7 @@ class Event(models.Model):
     kehadiran = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     is_full_capacity = models.BooleanField(default=False)
-    nama_event = models.CharField(max_length=100, blank=True)
+    nama_event = models.CharField(max_length=300, blank=True)
     createt_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
