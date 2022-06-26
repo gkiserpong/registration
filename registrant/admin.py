@@ -30,7 +30,7 @@ class RegistrantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
             'event', 'jumlah', 'kursi', 'is_come', 'is_active')
 
     list_filter = ['event__nama_event',]
-    search_fields = ['nama', 'email', 'event__nama', 'event__name_event']
+    search_fields = ['nama', 'email', 'event__nama', 'event__nama_event']
     #search_fields = ('nama', 'kursi',)
 
 #    def event_filter(obj):
