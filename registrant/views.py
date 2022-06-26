@@ -57,7 +57,7 @@ def qr_ok(request):
 
         event = Event.objects.get(id=eventid)
         # Add total event pendaftar
-        event.jumlah_pendaftar += jumlah
+        event.jumlah_pendaftar += int(jumlah)
         event.save()
 
         wilayah = Wilayah.objects.get(id=wilayahid)
