@@ -15,7 +15,7 @@ def report(request):
         if form.is_valid:
             event = Event.objects.get(id=request.POST.get('event'))
             registrant = Registrant.objects.filter(event=request.POST.get('event'))
-            email_count = Registrant.objects.count(event=request.POST.get('event'))
+            email_count = Registrant.objects.filter(event=request.POST.get('event')).count()
             context = {
                 'event': event,
                 'registrant': registrant,
