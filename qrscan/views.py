@@ -90,7 +90,8 @@ def qr_scan(request):
                 
                 else:
                     event_context['seat_no'] = registrant.kursi
-                    template_to_use = "qr_used.html"
+                    #template_to_use = "qr_used.html"
+                    template_to_use = "qr_scan.html"
 
                 #print(template_to_use)
                 #return render(request, template_to_use, event_context)
