@@ -46,7 +46,7 @@ class Event(models.Model):
 
     def save(self, *args, **kwargs):
         tanggal = timezone.localtime(self.tanggal)
-        self.name_event = '%s - %s, %s' % (
+        self.nama_event = '%s - %s, %s' % (
             self.nama,
             _(tanggal.strftime('%A')), _(tanggal.strftime('%H:%M %d/%m/%Y'))
         )
