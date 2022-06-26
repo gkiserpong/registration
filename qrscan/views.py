@@ -61,7 +61,8 @@ def qr_scan(request):
             event_start = event.tanggal - timedelta(hours=2)
             event_end = event.tanggal + timedelta(hours=2)
 
-            if ((now() > event_start) and (now() < event_end)) or force_checkin:
+            # if ((now() > event_start) and (now() < event_end)) or force_checkin:
+            if (now() > event_start) and (now() < event_end):
 
                 if registrant.is_active and not registrant.is_come:
                     #print(registrant.id)
@@ -88,6 +89,7 @@ def qr_scan(request):
                     #return render(request, template_to_use, event_context)
                 
                 else:
+                    event_context['seat_no'] = registrant.kursi
                     template_to_use = "qr_used.html"
 
                 #print(template_to_use)
@@ -97,6 +99,7 @@ def qr_scan(request):
                 if registrant.is_active and not registrant.is_come:
                     template_to_use = "event_not_start.html"
                 else:
+                    event_context['seat_no'] = registrant.kursi
                     template_to_use = 'qr_used.html'
 
             print(template_to_use)
