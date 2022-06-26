@@ -50,7 +50,9 @@ class Event(models.Model):
             self.nama,
             _(tanggal.strftime('%A')), _(tanggal.strftime('%H:%M %d/%m/%Y'))
         )
-        if self.jumlah_pendaftar >= self.kapasitas and not self.is_full_capacity:
+        if self.jumlah_pendaftar >= self.kapasitas:
             self.is_full_capacity = True
+        else:
+            self.is_full_capacity = False
 
         return super(Event, self).save(*args, **kwargs)
