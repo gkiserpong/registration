@@ -38,6 +38,7 @@ class Registrant(models.Model):
     def clean(self):
         self.email = self.email.lower()
 
+"""
 @receiver(post_save, sender=Registrant)
 def auto_create_member(sender, instance, created, **kwargs):
     if created:
@@ -51,6 +52,7 @@ def auto_increase_jumlah_pendaftar(sender, instance, created, **kwargs):
         event = Event.objects.get(id=registrant.event.id)
         event.jumlah_pendaftar += registrant.jumlah
         event.save()
+"""
 
 # Member
 class Member(models.Model):

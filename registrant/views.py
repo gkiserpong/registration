@@ -56,6 +56,10 @@ def qr_ok(request):
             return render(request, "email_used.html", {"email": email})
 
         event = Event.objects.get(id=eventid)
+        # Add total event pendaftar
+        event.jumlah_pendaftar += jumlah
+        event.save()
+
         wilayah = Wilayah.objects.get(id=wilayahid)
     
         reg = Registrant.objects.create(
